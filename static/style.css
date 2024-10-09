@@ -1,0 +1,182 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header styling */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Grid layout styling */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+    grid-template-rows: auto 1fr; /* Two rows, second row takes remaining space */
+    gap: 20px; /* Space between grid items */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Category select styling */
+.category-select {
+    grid-column: 2 / 3; /* Middle column */
+    grid-row: 1 / 2; /* First row */
+    text-align: center;
+}
+
+.category-buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-button {
+    flex-grow: 1;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px; /* Small margin between buttons */
+}
+
+.category-button:hover {
+    background-color: #0056b3;
+}
+
+/* Country filter styling */
+.country-filter {
+    grid-column: 1 / 2; /* First column */
+    grid-row: 2 / 3; /* Second row */
+}
+
+.flag-selections {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.flag-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.flag-item img {
+    width: 70px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border-radius: 5px;
+}
+
+.flag-item img.selected {
+    transform: scale(1.2);
+    border: 2px solid #007bff;
+}
+
+.year-buttons-container {
+    display: flex;
+    gap: 5px;
+}
+
+.year-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.year-button.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Radar chart styling */
+.radar-chart {
+    grid-column: 2 / 3; /* Middle column */
+    grid-row: 2 / 3; /* Second row */
+    text-align: center;
+}
+
+.radarChart {
+    width: 100%; /* Match the container width */
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    text-align: left;
+    padding: 8px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none; /* Prevent the tooltip from blocking mouse events */
+}
+
+/* Table styling */
+.data-table {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+td {
+    transition: background-color 0.3s ease; /* Smooth transition for background color changes */
+}

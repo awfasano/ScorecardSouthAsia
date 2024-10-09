@@ -1,0 +1,16 @@
+Flask==3.0.3
+gunicorn==22.0.0
+Werkzeug==3.0.3
+psycopg2-binary~=2.9.9
+pip~=24.1.2
+attrs~=23.2.0
+cryptography~=43.0.0
+Jinja2~=3.1.4
+typing_extensions~=4.9.0
+MarkupSafe~=2.1.5
+click~=8.1.7
+blinker~=1.8.2
+itsdangerous~=2.2.0
+packaging~=24.1
+SQLAlchemy~=2.0.31
+cloud-sql-python-connector[pg8000]

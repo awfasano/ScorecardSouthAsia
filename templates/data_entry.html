@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Entry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='survey_style.css') }}">
+</head>
+<body>
+<header>
+    <h1>Data Entry</h1>
+</header>
+
+<!-- Filters Section -->
+<div class="filters">
+    <div class="filter-group">
+        <label for="indicatorFilter">Indicator:</label>
+        <select id="indicatorFilter">
+            <option value="">All Indicators</option>
+        </select>
+        <button onclick="applyIndicatorFilter()">Apply</button>
+    </div>
+
+    <div class="filter-group">
+        <label for="yearTypeFilter">Year Type:</label>
+        <select id="yearTypeFilter">
+            <option value="">All Year Types</option>
+        </select>
+        <button onclick="applyYearTypeFilter()">Apply</button>
+    </div>
+
+    <div class="filter-group">
+        <label for="countryFilter">Country:</label>
+        <select id="countryFilter">
+            <option value="">All Countries</option>
+        </select>
+        <button onclick="applyCountryFilter()">Apply</button>
+    </div>
+
+    <div class="filter-group">
+        <label for="categoryFilter">Category:</label>
+        <select id="categoryFilter">
+            <option value="">All Categories</option>
+        </select>
+        <button onclick="applyCategoryFilter()">Apply</button>
+    </div>
+
+    <div class="filter-group">
+        <button id="clearFilters" onclick="clearFilters()">Clear Filters</button>
+    </div>
+</div>
+
+<button id="addNewScorecardBtn">Create New Scorecard Value</button>
+<button id="addNewIndicatorBtn">Create New Indicator</button>
+
+<!-- Placeholder for new entry forms -->
+<div id="newEntryContainer"></div>
+
+<!-- Tables for Organized Data -->
+<div id="organizedTables"></div>
+
+<!-- JavaScript File -->
+<script src="{{ url_for('static', filename='survey_table_script.js') }}"></script>
+</body>
+</html>

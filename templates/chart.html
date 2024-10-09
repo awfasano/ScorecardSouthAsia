@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>South Asia Radar Chart Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<header>
+    <h1>South Asia Radar Chart Analysis</h1>
+</header>
+
+<div class="grid-container">
+    <!-- First row, middle column: Category select -->
+    <div class="category-select">
+        <div id="categoryContainer" class="category-buttons-container">
+            <!-- Category buttons will be dynamically populated here -->
+        </div>
+    </div>
+
+    <!-- Second row, first column: Country filter -->
+    <div class="country-filter">
+        <label>Select Countries:</label>
+        <div id="flagSelections" class="flag-selections">
+            <!-- Flags will be dynamically populated here -->
+        </div>
+    </div>
+
+    <!-- Second row, middle column: Radar chart -->
+    <div class="radar-chart">
+        <div id="chart" class="radarChart">
+            <svg width="600" height="600"></svg>
+        </div>
+    </div>
+</div>
+
+<!-- Add the table element to display the data -->
+<div class="data-table">
+    <table id="dataTable">
+        <!-- Table content will be dynamically populated here -->
+    </table>
+</div>
+
+<div id="tooltip" class="tooltip"></div>
+<script src="{{ url_for('static', filename='radarChart.js') }}"></script>
+</body>
+</html>

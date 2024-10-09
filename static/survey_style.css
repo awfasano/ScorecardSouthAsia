@@ -1,0 +1,211 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Filters Section */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.filter-group label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-group select {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.filter-group button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.filter-group button:hover {
+    background-color: #0056b3;
+}
+
+/* Organized Tables Section */
+#organizedTables {
+    margin-top: 20px;
+}
+
+#organizedTables table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#organizedTables th, #organizedTables td {
+    padding: 5px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#organizedTables th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Table Hover Effects */
+#organizedTables tr:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+#organizedTables tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+#organizedTables td:hover {
+    background-color: #e9e9e9;
+}
+
+/* Table Edit Inputs */
+#organizedTables td input[type="text"] {
+    width: 100%;
+    border: none;
+    background-color: #f9f9f9;
+    padding: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Survey Form Section */
+#surveyForm {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#surveyForm h3 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+}
+
+#surveyForm .toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#surveyForm .toggle-buttons button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+}
+
+#surveyForm .toggle-buttons button:hover {
+    background-color: #0056b3;
+}
+
+#surveyForm .form-group {
+    margin-bottom: 15px;
+}
+
+#surveyForm .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+#surveyForm .form-group input,
+#surveyForm .form-group select,
+#surveyForm .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+#surveyForm .form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+#surveyForm table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+#surveyForm th, #surveyForm td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+#surveyForm th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+#surveyForm td input[type="text"] {
+    width: 100%;
+    border: none;
+    background-color: #f9f9f9;
+    padding: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Save Button */
+#surveyForm button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+#surveyForm button:hover {
+    background-color: #218838;
+}
