@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Entry with Microsoft Login</title>
     <script src="https://alcdn.msauth.net/browser/2.32.1/js/msal-browser.min.js"></script>
-    <style>
-        #data-entry {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_data_input.css') }}">
 </head>
 <body>
 <h1>Welcome to the Data Entry Portal</h1>
@@ -63,8 +59,8 @@
     const msalConfig = {
         auth: {
             clientId: "6f9b2b30-f0f4-4630-a452-9245f295c947", // Replace with your Azure AD app client ID
-            authority: "https://login.microsoftonline.com/common",
-            redirectUri: window.location.origin
+            authority: "https://login.microsoftonline.com/eeadad2d-ff1a-48de-a8a6-20d1d35e4faf",
+            redirectUri: "https://automationwbrise.uc.r.appspot.com/data_input"
         }
     };
 

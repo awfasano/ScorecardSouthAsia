@@ -32,6 +32,10 @@ def index():
 def data_entry():
     return render_template('data_entry.html')
 
+@app.route('/data_input')
+def data_input():
+    return render_template('data_input.html')
+
 
 @app.route('/api/scorecard_indicators', methods=['GET'])
 def get_scorecard_indicators():
