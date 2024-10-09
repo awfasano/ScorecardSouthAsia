@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry with Microsoft Login</title>
+    <script src="https://alcdn.msauth.net/browser/2.32.1/js/msal-browser.min.js"></script>
+    <style>
+        #data-entry {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Data Entry Portal</h1>
+<button id="login-button">Login with Microsoft</button>
+
+<div id="user-info" style="display: none;">
+    <h2 id="greeting"></h2>
+</div>
+
+<div id="data-entry">
+    <h2>Create New Scorecard Value</h2>
+    <form id="surveyDataForm">
+        <div class="form-group">
+            <label for="CountryInput">Country:</label>
+            <input type="text" id="CountryInput" required />
+        </div>
+        <div class="form-group">
+            <label for="IndicatorInput">Indicator:</label>
+            <input type="text" id="IndicatorInput" required />
+        </div>
+        <div class="form-group">
+            <label for="ProxyInput">Proxy:</label>
+            <input type="text" id="ProxyInput" required />
+        </div>
+        <div class="form-group">
+            <label for="SourceInputScorecard">Source:</label>
+            <input type="text" id="SourceInputScorecard" required />
+        </div>
+        <div class="form-group">
+            <label for="IndicatorIDInput">Indicator ID:</label>
+            <input type="text" id="IndicatorIDInput" required />
+        </div>
+        <div class="form-group">
+            <label for="YearInput">Year:</label>
+            <input type="text" id="YearInput" required />
+        </div>
+        <div class="form-group">
+            <label for="YearTypeInput">Year Type:</label>
+            <input type="text" id="YearTypeInput" required />
+        </div>
+        <div class="form-group">
+            <label for="valueInput">Value:</label>
+            <input type="text" id="valueInput" required />
+        </div>
+        <button type="button" onclick="saveSurveyData()">Save</button>
+    </form>
+</div>
+
+<script>
+    // MSAL configuration
+    const msalConfig = {
+        auth: {
+            clientId: "6f9b2b30-f0f4-4630-a452-9245f295c947", // Replace with your Azure AD app client ID
+            authority: "https://login.microsoftonline.com/common",
+            redirectUri: window.location.origin
+        }
+    };
+
+    const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+    let userEmail = '';
+
+    // Elements
+    const loginButton = document.getElementById('login-button');
+    const dataEntryDiv = document.getElementById('data-entry');
+    const userInfoDiv = document.getElementById('user-info');
+    const greeting = document.getElementById('greeting');
+
+    // Login button click handler
+    loginButton.addEventListener('click', () => {
+        msalInstance.loginPopup({
+            scopes: ["user.read"]
+        }).then(response => {
+            console.log("Login successful:", response);
+            getUserProfile(response.accessToken);
+        }).catch(error => {
+            console.error("Login failed:", error);
+        });
+    });
+
+    // Get User Profile
+    function getUserProfile(accessToken) {
+        fetch("https://graph.microsoft.com/v1.0/me", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+            .then(response => response.json())
+            .then(user => {
+                userEmail = user.mail || user.userPrincipalName; // Get email or userPrincipalName if mail is not available
+                const userName = user.displayName;
+
+                // Display the user's name and show the data entry form
+                greeting.innerText = `Hello, ${userName}`;
+                userInfoDiv.style.display = 'block';
+                loginButton.style.display = 'none';
+                dataEntryDiv.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error fetching user profile:', error);
+            });
+    }
+
+    // Save Survey Data - to be sent to Flask server
+    function saveSurveyData() {
+        const surveyData = {
+            user_email: userEmail, // Include the user's email in the data
+            country: document.getElementById('CountryInput').value,
+            indicator: document.getElementById('IndicatorInput').value,
+            proxy: document.getElementById('ProxyInput').value,
+            source: document.getElementById('SourceInputScorecard').value,
+            indicator_id: document.getElementById('IndicatorIDInput').value,
+            year: document.getElementById('YearInput').value,
+            year_type: document.getElementById('YearTypeInput').value,
+            value: document.getElementById('valueInput').value
+        };
+
+        fetch('/api/save_scorecard', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(surveyData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(`Error: ${data.error}`);
+                } else {
+                    alert('Scorecard saved successfully!');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while saving the scorecard.');
+            });
+    }
+</script>
+</body>
+</html>
