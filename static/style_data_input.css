@@ -69,7 +69,8 @@ header {
     display: block;
 }
 
-#data-entry .form-group input {
+#data-entry .form-group input,
+#data-entry .form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -92,4 +93,72 @@ header {
 
 #data-entry button:hover {
     background-color: #218838;
+}
+
+/* Dropdown Filters */
+.filter-group {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.filter-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Toggle Buttons */
+.toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.toggle-buttons button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+}
+
+.toggle-buttons button:hover {
+    background-color: #0056b3;
+}
+
+/* Year and Country Table */
+.countryYearRow {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.countryField,
+.yearField,
+.yearTypeField {
+    flex: 1;
+    padding: 10px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Indicator and Scorecard Fields */
+.indicatorField,
+.scoreField {
+    display: none;
+}
+
+.indicatorField.active,
+.scoreField.active {
+    display: block;
 }

@@ -449,11 +449,13 @@ function drawRadarChartForCountryYear(country, yearType, groupName, svgRadar, rS
             tooltip.transition().duration(200)
                 .style("opacity", .9);
             tooltip.html(
+                `Country: ${country}` +
                 `Indicator: ${d.axis}<br/>` +
                 `Proxy: ${tooltipData.proxy}<br/>` +
                 `Value: ${d.value_standardized}<br/>` +
-                `Value Map: ${tooltipData.value_map}<br/>` +
-                `Standardized Value (Table): ${tooltipData.table_value_standarized}`
+                `Source: ${tooltipData.source}<br/>` +
+                `Rank: in progress...<br/>` +
+                `Year: ${tooltipData.year}<br/>`
             )
                 .style("left", (event.pageX + 10) + "px")
                 .style("top", (event.pageY - 28) + "px");
@@ -470,8 +472,6 @@ function drawRadarChartForCountryYear(country, yearType, groupName, svgRadar, rS
         });
 }
 
-// Update the table based on selected countries and indicators
-// Update the table based on selected countries and indicators
 // Update the table based on selected countries and indicators
 function updateTable(countries, selectedGroup) {
     const table = d3.select("#dataTable");
@@ -555,11 +555,13 @@ function updateTable(countries, selectedGroup) {
                         tooltip.transition().duration(200)
                             .style("opacity", .9);
                         tooltip.html(
+                            `Country: ${valueData?.country}<br/>` +
                             `Indicator: ${indicator}<br/>` +
                             `Proxy: ${valueData?.proxy}<br/>` +
-                            `Value: ${valueData?.value_standardized}<br/>` +
-                            `Value Map: ${valueData?.value_map}<br/>` +
-                            `Standardized Value (Table): ${valueData?.table_value_standarized}`
+                            `Value: ${valueData?.value_map}<br/>` +
+                            `Source: ${valueData?.source}<br/>`+
+                            `Rank: ${valueData?.value_map}<br/>` +
+                            `Year: ${valueData?.year}<br/>`
                         )
                             .style("left", (event.pageX) + "px")
                             .style("top", (event.pageY - 28) + "px");

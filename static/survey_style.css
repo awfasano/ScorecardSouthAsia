@@ -1,211 +1,290 @@
-/* General Styles */
+/* General body styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
     margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header styling */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Grid layout styling */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+    grid-template-rows: auto 1fr; /* Two rows, second row takes remaining space */
+    gap: 20px; /* Space between grid items */
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-header {
+/* Category select styling */
+.category-select {
+    grid-column: 2 / 3; /* Middle column */
+    grid-row: 1 / 2; /* First row */
     text-align: center;
-    margin-bottom: 20px;
 }
 
-/* Filters Section */
-.filters {
+.category-buttons-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    gap: 10px;
 }
 
-.filter-group {
+.category-button {
+    flex-grow: 1;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 5px; /* Small margin between buttons */
+}
+
+.category-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Selected category button */
+.category-button.selected {
+    background-color: #004085;
+}
+
+/* Country filter styling */
+.country-filter {
+    grid-column: 1 / 2; /* First column */
+    grid-row: 2 / 3; /* Second row */
+}
+
+.flag-selections {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.flag-item {
     display: flex;
     align-items: center;
+    gap: 10px;
     margin-bottom: 10px;
 }
 
-.filter-group label {
-    margin-right: 10px;
-    font-weight: bold;
+.flag-item img {
+    width: 70px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border-radius: 5px;
 }
 
-.filter-group select {
-    margin-right: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+.flag-item img:hover {
+    transform: scale(1.25);
+    border: 3px solid #007bff;
 }
 
-.filter-group button {
+.flag-item img.selected {
+    transform: scale(1.2);
+    border: 2px solid #007bff;
+}
+
+.year-buttons-container {
+    display: flex;
+    gap: 5px;
+}
+
+.year-button {
     padding: 5px 10px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 3px;
     cursor: pointer;
-}
-
-.filter-group button:hover {
-    background-color: #0056b3;
-}
-
-/* Organized Tables Section */
-#organizedTables {
-    margin-top: 20px;
-}
-
-#organizedTables table {
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#organizedTables th, #organizedTables td {
-    padding: 5px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-#organizedTables th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 2px solid #ddd;
-}
-
-/* Table Hover Effects */
-#organizedTables tr:hover {
-    background-color: #f9f9f9;
-    cursor: pointer;
-}
-
-#organizedTables tr:nth-child(even) {
-    background-color: #f7f7f7;
-}
-
-#organizedTables td:hover {
-    background-color: #e9e9e9;
-}
-
-/* Table Edit Inputs */
-#organizedTables td input[type="text"] {
-    width: 100%;
-    border: none;
-    background-color: #f9f9f9;
-    padding: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
-}
-
-/* Survey Form Section */
-#surveyForm {
-    margin-top: 20px;
-    background-color: #fff;
-    padding: 20px;
+    background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
 }
 
-#surveyForm h3 {
-    margin-bottom: 20px;
-    font-size: 1.5em;
-    color: #333;
+.year-button.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.year-button:hover {
+    background-color: #3e8e41;
+    color: white;
+}
+
+/* Radar chart styling */
+.radar-chart {
+    grid-column: 2 / 3; /* Middle column */
+    grid-row: 2 / 3; /* Second row */
     text-align: center;
 }
 
-#surveyForm .toggle-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-#surveyForm .toggle-buttons button {
-    flex: 1;
-    margin: 0 5px;
+.radarChart {
+    width: 100%; /* Match the container width */
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
     padding: 10px;
-    border-radius: 5px;
-    font-size: 1em;
-    background-color: #007bff;
-    color: white;
+    text-align: center;
 }
 
-#surveyForm .toggle-buttons button:hover {
-    background-color: #0056b3;
-}
-
-#surveyForm .form-group {
-    margin-bottom: 15px;
-}
-
-#surveyForm .form-group label {
+.radarChart text.legend {
     font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
+    fill: #333;
 }
 
-#surveyForm .form-group input,
-#surveyForm .form-group select,
-#surveyForm .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 1em;
+.radarChart circle.radarCircle {
+    transition: all 0.2s ease-in-out;
 }
 
-#surveyForm .form-group textarea {
-    height: 100px;
-    resize: vertical;
+.radarChart circle.radarCircle:hover {
+    fill: orange;
+    r: 10;
 }
 
-#surveyForm table {
+/* Tooltip styling */
+.tooltip {
+    position: absolute;
+    text-align: left;
+    padding: 8px;
+    font: 16px sans-serif; /* Increased font size */
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none; /* Prevent the tooltip from blocking mouse events */
+    opacity: 0.9;
+    color: #333;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Table styling */
+.data-table {
+    margin-top: 20px;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #fff;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#surveyForm th, #surveyForm td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ccc;
+th, td {
+    padding: 12px;
+    text-align: center; /* Center-align all cells */
+    border-bottom: 1px solid #ddd;
 }
 
-#surveyForm th {
-    background-color: #f9f9f9;
+th {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+}
+
+th:first-child, td:first-child {
+    text-align: left; /* Left-align the first column (indicators) */
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+td {
+    transition: background-color 0.3s ease; /* Smooth transition for background color changes */
+}
+
+/* Highlight cells with high standardized values */
+td.high-value {
+    color: white;
+    font-weight: bold;
+    background-color: #444; /* Dark background to contrast with white text */
+}
+
+/* Tooltip styles for table */
+td.value:hover {
+    position: relative;
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+/* Wrap function for radar chart axis labels */
+.radarChart .legend {
+    font-size: 11px;
+    text-anchor: middle;
     font-weight: bold;
 }
 
-#surveyForm td input[type="text"] {
-    width: 100%;
+.radarChart .levels {
+    fill: none;
+    stroke: gray;
+    stroke-opacity: 0.75;
+    stroke-width: 0.3;
+}
+
+.radarChart .axis line {
+    stroke: gray;
+    stroke-width: 2px;
+}
+
+/* Style for increasing padding to allow room for axis labels */
+.radarChart {
+    padding: 20px;
+}
+
+/* Buttons in year-buttons-container */
+.year-buttons-container button {
+    background: #f5f5f5;
     border: none;
-    background-color: #f9f9f9;
-    padding: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
-}
-
-/* Save Button */
-#surveyForm button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #28a745;
-    color: white;
+    padding: 5px 8px;
+    margin: 2px;
     cursor: pointer;
-    font-size: 1em;
-    margin-top: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-#surveyForm button:hover {
-    background-color: #218838;
+.year-buttons-container button:hover {
+    background-color: #d1e7dd; /* Light green on hover */
+}
+
+/* Miscellaneous styles */
+button {
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #555;
+    color: white;
+}
+
+button:focus {
+    outline: none;
 }

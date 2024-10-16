@@ -140,7 +140,7 @@ header h1 {
     position: absolute;
     text-align: left;
     padding: 8px;
-    font: 12px sans-serif;
+    font: 16px sans-serif; /* Increased font size */
     background: lightsteelblue;
     border: 0px;
     border-radius: 8px;
@@ -164,7 +164,7 @@ table {
 
 th, td {
     padding: 12px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
