@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, url_for
 
 from Classes.ScorecardChart import get_scorecard_chart_data
 from db import Session, init_db
@@ -37,6 +37,15 @@ def data_input():
     return render_template('data_input.html')
 
 
+@app.route('/chart')
+def chart():
+    sar_image = url_for('static', filename='Assets/SAR_wo_India.jpeg')
+    sa_image = url_for('static', filename='Assets/SAR.jpeg')
+    return render_template('chart.html',
+                           sar_image=sar_image,
+                           sa_image=sa_image)
+
+
 @app.route('/api/indicators', methods=['GET'])
 def get_indicators():
     try:
@@ -50,6 +59,7 @@ def get_indicators():
         return jsonify({"error": str(e)}), 500
     finally:
         Session.remove()
+
 
 @app.route('/api/scorecard_chart', methods=['GET'])
 def get_scorecard_chart():

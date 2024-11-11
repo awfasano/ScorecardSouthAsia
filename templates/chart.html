@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,42 +7,89 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script defer src="{{ url_for('static', filename='radarChart.js') }}"></script>
 </head>
+
 <body>
+
+<!-- Title for the page -->
 <header>
     <h1>South Asia Radar Chart Analysis</h1>
 </header>
 
-<div class="grid-container">
-    <!-- First row, middle column: Category select -->
-    <div class="category-select">
-        <div id="categoryContainer" class="category-buttons-container">
-            <!-- Category buttons will be dynamically populated here -->
+
+
+<div class="main-container">
+    <!-- Category buttons at the top -->
+    <div id="categoryContainer" class="category-buttons-container">
+        <!-- Category buttons will be dynamically populated here -->
+    </div>
+    <div class="grid-container">
+        <!-- Left column: Flag selections -->
+        <div class="controls">
+            <!-- Flag selections -->
+            <div id="flagSelections" class="flag-selections">
+                <!-- Flags will be dynamically populated here -->
+            </div>
+        </div>
+
+        <!-- Right column: Radar chart -->
+        <div class="radar-chart">
+            <!-- Global year buttons positioned over the radar chart -->
+            <div class="global-year-buttons">
+                <button id="recentMeasurementButton" class="global-year-button">Most Recent Measurement</button>
+                <button id="previousMeasurementButton" class="global-year-button">Previous Measurement</button>
+                <div class="toggle-buttons">
+                    <button id="toggleValuesButton" class="global-year-button">Show Values</button>
+                    <button onclick="toggleInstructions()" id="instructionsToggle" class="global-year-button">Instructions ▼</button>
+                </div>
+            </div>
+            <!-- Instructions Section -->
+            <div id="instructionsContent" class="instructions-content" style="display: none;">
+                <ul>
+                    <li>Select a country flag to view data. You can select multiple countries.</li>
+                    <li>Choose "Most Recent Measurement" or "Previous Measurement" to filter data by year.</li>
+                    <li>Select categories from the buttons at the top to view specific indicators on the radar chart.</li>
+                    <li>Hover over the radar chart, Recent/Previous button, or Axis to see relevant values. Use the "Show Values" button to display alls values on the chart.</li>
+                    <li>Sort the data in the table by year or country, or download the data as a CSV file. Only the measurements in the table will be downloaded along with the data in the tooltip</li>
+                    <li>Notes: Selecting all buttons will result in some overlap in labels, when you show radar values the radar label values are also hoverable</li>
+                </ul>
+            </div>
+            <div id="chart" class="radarChart">
+                <svg width="600" height="600"></svg>
+            </div>
         </div>
     </div>
 
-    <!-- Second row, first column: Country filter -->
-    <div class="country-filter">
-        <label>Select Countries:</label>
-        <div id="flagSelections" class="flag-selections">
-            <!-- Flags will be dynamically populated here -->
+    <!-- Data table with download button -->
+    <div class="data-table">
+        <div class="table-controls">
+            <button id="sortYearButton" class="sort-button">Sort by Year</button>
+            <button id="sortCountryButton" class="sort-button selected">Sort by Country</button>
+            <button id="downloadCsvButton">Download CSV</button>
+        </div>
+        <div class="table-container">
+            <table id="dataTable">
+                <!-- Table content will be dynamically populated here -->
+            </table>
         </div>
     </div>
-
-    <!-- Second row, middle column: Radar chart -->
-    <div class="radar-chart">
-        <div id="chart" class="radarChart">
-            <svg width="600" height="600"></svg>
-        </div>
-    </div>
-</div>
-
-<!-- Add the table element to display the data -->
-<div class="data-table">
-    <table id="dataTable">
-        <!-- Table content will be dynamically populated here -->
-    </table>
 </div>
 
 <div id="tooltip" class="tooltip"></div>
+
+<script>
+    function toggleInstructions() {
+        const instructions = document.getElementById("instructionsContent");
+        const toggleButton = document.getElementById("instructionsToggle");
+
+        if (instructions.style.display === "none") {
+            instructions.style.display = "block";
+            toggleButton.innerHTML = "Instructions ▲";
+        } else {
+            instructions.style.display = "none";
+            toggleButton.innerHTML = "Instructions ▼";
+        }
+    }
+</script>
+
 </body>
 </html>

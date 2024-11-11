@@ -2,44 +2,43 @@ from sqlalchemy import Column, Integer, String, Boolean, Float, ForeignKey
 from sqlalchemy.orm import relationship, joinedload
 from db import Base  # Import Base from your centralized module
 import logging
-import json  # Import json module for debugging
-from Classes.Indicator import Indicator  # Ensure you import Indicator from the correct location
+import json
+from Classes.Indicator import Indicator  # Ensure correct import path
 
-# Define the ScoreCardIndicator2 model
 class ScoreCardIndicator2(Base):
-    __tablename__ = 'scorecard_indicators2'
+    __tablename__ = 'scorecard_indicators3'
     secondary_id = Column(Integer, primary_key=True)
 
-    # Define the foreign key to the Indicator table
     id = Column(Integer, ForeignKey('indicators_revised.id'))
-
     category_id = Column(Integer)
     group_name = Column(String)
-    indicator = Column(String)  # Renamed to avoid conflict with relationship name
+    indicator = Column(String)  # Avoid conflict with relationship name
     proxy = Column(String)
     country = Column(String)
     year = Column(String)
     year_type = Column(Integer)
     source = Column(String)
-    value = Column(String)
-    value_n = Column(Float)
+    value = Column(String)  # Updated to String
+    value_n = Column(String)  # Updated to String
     value_map = Column(String)
     value_standardized = Column(Float)
     positive = Column(Boolean)
     value_standardized_table = Column(Float)
+    percent_number = Column(Boolean)  # New boolean column added
 
     # Define the relationship to the Indicator table
     indicator_details = relationship('Indicator', back_populates='scorecard_values')
 
 # Fetching the data from the database with joinedload
 def get_scorecard_indicator2_data():
-    from db import Session  # Import Session here to avoid circular import issues
+    from db import Session  # Import Session to avoid circular import issues
 
     session = Session()
     try:
         # Use joinedload to optimize fetching related Indicator data
         scorecards = session.query(ScoreCardIndicator2).options(joinedload(ScoreCardIndicator2.indicator_details)).all()
         result = []
+
         for scorecard in scorecards:
             indicator_data = None
             if scorecard.indicator_details:
@@ -81,7 +80,7 @@ def get_scorecard_indicator2_data():
                 'Category_ID': scorecard.category_id,
                 'Secondary_ID': scorecard.secondary_id,
                 'Group_Name': scorecard.group_name,
-                'Indicator_Name': scorecard.indicator,  # Updated to match the model change
+                'Indicator_Name': scorecard.indicator,  # Match model attribute name
                 'Proxy': scorecard.proxy,
                 'Country': scorecard.country,
                 'Year': scorecard.year,
@@ -93,19 +92,19 @@ def get_scorecard_indicator2_data():
                 'Value_Standardized': scorecard.value_standardized,
                 'Positive': scorecard.positive,
                 'Value_Standardized_Table': scorecard.value_standardized_table,
+                'Percent_Number': scorecard.percent_number,
                 'Indicator_Details': indicator_data
             }
 
             result.append(scorecard_data)
 
-        # Debug code to identify the problematic item
+        # Debugging: Check for serialization issues
         for idx, item in enumerate(result):
             try:
-                print(f"Serializing item {idx}")
                 json.dumps(item)
             except TypeError as te:
                 logging.error(f"Serialization issue at item {idx}: {te}")
-                raise  # Re-raise the error to see it in the log
+                raise  # Reraise for visibility
 
         return result
 

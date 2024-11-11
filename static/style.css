@@ -5,12 +5,12 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+   /* line-height: 1.6;*/
 }
 
 /* Header styling */
 header {
-    background-color: #007bff;
+    background-color: #333; /* Darker color scheme */
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -23,70 +23,102 @@ header h1 {
     font-size: 2em;
 }
 
-/* Grid layout styling */
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
-    grid-template-rows: auto 1fr; /* Two rows, second row takes remaining space */
-    gap: 20px; /* Space between grid items */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Category select styling */
-.category-select {
-    grid-column: 2 / 3; /* Middle column */
-    grid-row: 1 / 2; /* First row */
-    text-align: center;
-}
-
+/* Category buttons at the top */
 .category-buttons-container {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .category-button {
-    flex-grow: 1;
     padding: 10px 20px;
-    text-align: center;
-    background-color: #007bff;
+    font-size: 22px;
+    background-color: #333; /* Darker button color */
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin: 5px; /* Small margin between buttons */
 }
 
 .category-button:hover {
-    background-color: #0056b3;
+    background-color: #777;
 }
 
-/* Country filter styling */
-.country-filter {
-    grid-column: 1 / 2; /* First column */
-    grid-row: 2 / 3; /* Second row */
+.category-button.selected {
+    background-color: #777;
 }
 
-.flag-selections {
+.main-container {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 0px;
+}
+/* Adjusted grid-container styling */
+.grid-container {
+    display: grid;
+    grid-template-columns: 0.2fr 2.8fr; /* Adjusted to decrease the width of the flag column */
+    gap: 20px;
+    align-items: start; /* Align items at the top */
+}
+
+/* Controls styling */
+.controls {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     align-items: flex-start;
 }
 
+/* Center the flags in the column */
+.flag-selections {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 10px;
+    align-items: flex-start; /* Center the flags */
+    width: 200px;
+}
+
+.flag-selections {
+    overflow-y: auto;
+    max-height: calc(100% - 20px); /* Leave space for any margins/padding */
+}
+
+.flag-image-container img {
+    transition: transform 0.2s ease;
+}
+
+.flag-image-container img:hover {
+    transform: scale(1.1);
+}
+
+
+/* Adjust flag item styling */
+/* Adjusted flag-item styling */
 .flag-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    margin: 5px 0;
 }
 
+.flag-image-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adjust country label */
+.country-label {
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Adjust flag image styling */
 .flag-item img {
-    width: 70px;
+    width: 60px; /* Reduced width for better balance */
     height: auto;
     cursor: pointer;
     transition: transform 0.2s;
@@ -94,89 +126,395 @@ header h1 {
 }
 
 .flag-item img.selected {
-    transform: scale(1.2);
+    transform: scale(1.05);
     border: 2px solid #007bff;
 }
 
+/* Adjust year-buttons-container */
 .year-buttons-container {
-    display: flex;
+    display: none; /* Hidden by default */
+    flex-direction: column;
     gap: 5px;
+    margin-left: 10px; /* Space between flag and buttons */
+}
+
+/* Show year-buttons-container when flag-item has 'selected' class */
+.flag-item.selected .year-buttons-container {
+    display: flex;
 }
 
 .year-button {
     padding: 5px 10px;
     cursor: pointer;
-    background-color: #f0f0f0;
+    background-color: #555; /* Darker button color */
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: background-color 0.3s;
+    font-size: 12px;
+    width: 100px;
+    text-align: center;
+    color: white;
+}
+
+.year-button:hover {
+    background-color: #777;
 }
 
 .year-button.selected {
-    background-color: #4CAF50;
     color: white;
+}
+
+.instructions-container {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.instructions-toggle {
+    margin-left: auto;
+    padding: 8px 12px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.instructions-toggle:hover {
+    background-color: #777;
+}
+
+.instructions-content {
+    max-width: 800px;
+    margin: 10px auto;
+    text-align: left;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: black; /* Set font color to black */
 }
 
 /* Radar chart styling */
 .radar-chart {
-    grid-column: 2 / 3; /* Middle column */
-    grid-row: 2 / 3; /* Second row */
     text-align: center;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .radarChart {
-    width: 100%; /* Match the container width */
-    max-width: 600px;
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 10px;
-    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    position: relative;
+    overflow: visible;
+}
+
+.radarChart svg {
+    overflow: visible;
+}
+
+/* Adjust axis label styling */
+.legend tspan {
+    font-size: 13px; /* Increased font size for better readability */
+    text-anchor: middle;
+}
+
+.axisLabel {
+    font-size: 14px;
+    font-weight: normal;
+    fill: #333;
+    dominant-baseline: middle;
+}
+
+/* Style for multiline axis labels */
+.axisLabel tspan {
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* Add hover effect for axis labels */
+.axisLabel:hover {
+    font-weight: bold;
+    cursor: pointer;
 }
 
 /* Tooltip styling */
 .tooltip {
     position: absolute;
-    text-align: left;
+    max-width: 300px;
+    width: auto;
     padding: 8px;
-    font: 16px sans-serif; /* Increased font size */
-    background: lightsteelblue;
-    border: 0px;
-    border-radius: 8px;
-    pointer-events: none; /* Prevent the tooltip from blocking mouse events */
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    pointer-events: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+    white-space: normal;
+    word-wrap: break-word;
+    display: block; /* Start hidden by default */
 }
 
-/* Table styling */
+
 .data-table {
     margin-top: 20px;
 }
 
+.data-table button {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    background-color: #28a745; /* Darker button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.data-table button:hover {
+    background-color: #218838;
+}
+
+.table-container {
+    overflow-x: auto;
+    position: relative; /* Add this */
+    max-width: 100%;
+}
+
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    table-layout: fixed;
+    border-collapse: separate; /* Change from collapse to separate */
+    border-spacing: 0; /* Add this to maintain the look */
     background-color: white;
     border-radius: 8px;
-    overflow: hidden;
 }
 
 th, td {
+    padding: 6px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    width: 150px;
+    word-wrap: break-word;
+    color: #333;
+    background-color: inherit; /* Add this */
+}
+
+/* Header styles */
+thead th {
+    background-color: #333;
+    color: #fff;
+    position: relative; /* Add this */
+    z-index: 2; /* Lower than first column header */
+}
+
+thead th:first-child {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Sticky first column */
+th:first-child,
+td:first-child {
+    position: -webkit-sticky; /* Add for Safari */
+    position: sticky;
+    left: 0;
+    background-color: #fff; /* Ensure background covers content behind */
+    width: 200px;
+    /* Add a gradient for shadow effect instead of box-shadow */
+    background-image: linear-gradient(to right, white 90%, rgba(255,255,255,0.8) 100%);
+}
+
+/* First header cell special styling */
+thead th:first-child {
+    background-color: #fff;
+    color: #333;
+    z-index: 3; /* Highest z-index to stay on top */
+    /* Add gradient for shadow effect */
+    background-image: linear-gradient(to right, white 90%, rgba(255,255,255,0.8) 100%);
+}
+
+tbody td:first-child {
+    background-color: #fff;
+    z-index: 1; /* Above regular cells but below headers */
+}
+
+/* Center align numbers in other columns */
+td.value {
+    font-weight: bold;
     padding: 12px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
 }
 
-th {
-    background-color: #007bff;
-    color: white;
+/* Adjust indicator column text alignment */
+td:first-child {
+    text-align: left;
 }
 
-tbody tr:hover {
+/* Hover effect on table rows */
+tbody tr:hover td {
     background-color: #f1f1f1;
 }
 
-td {
-    transition: background-color 0.3s ease; /* Smooth transition for background color changes */
+/* Sort button styling */
+.sort-btn {
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+thead {
+    position: relative;
+    z-index: 2;
+}
+
+tbody {
+    position: relative;
+    z-index: 1;
+}
+
+/* Styles for sort buttons */
+.table-controls .sort-button {
+    padding: 10px 20px;
+    background-color: #555; /* Darker button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.table-controls .sort-button:hover {
+    background-color: #777;
+}
+
+.table-controls .sort-button.selected {
+    background-color: #777;
+}
+
+.year-button:hover {
+    font-size: 16px; /* Adjust the size as needed */
+}
+
+.year-button {
+    transition: font-size 0.2s ease-in-out;
+}
+
+#downloadCsvButton {
+    padding: 10px 20px;
+    background-color: #0062cc; /* Different color for the download button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#downloadCsvButton:hover {
+    background-color: #004085;
+}
+
+
+/* Style for the toggle values button within radar chart */
+.radar-chart{
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Styling for the toggle values button and positioning it to the right */
+#toggleValuesButton {
+    margin-left: auto; /* Push button to the opposite side */
+    padding: 10px 20px;
+    background-color: #333; /* Darker button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for toggle values button */
+#toggleValuesButton:hover {
+    background-color: #777;
+}
+.radarText {
+    paint-order: stroke fill;
+    stroke-linejoin: round;
+}
+
+#tableTooltip {
+    position: absolute;
+    visibility: hidden;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 300px;
+    font-size: 12px;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+#tableTooltip.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Global year buttons container */
+.global-year-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.toggle-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto; /* Push to the right if needed */
+}
+
+.global-year-button {
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+}
+
+.global-year-button:hover {
+    background-color: #777;
+}
+
+.global-year-button.selected {
+    background-color: #777;
+    transform: scale(1.05);
+}
+
+/* Add a little spacing between global buttons and flags */
+.flag-selections {
+    margin-top: 0px;
 }
