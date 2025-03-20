@@ -5,8 +5,8 @@ env_variables:
   DB_NAME: 'scorecard'
   INSTANCE_CONNECTION_NAME: 'automationwbrise:us-east5:scorecard'
   DB_USER: 'awfasano'
-  DB_PASSWORD: 'football3'
-  DB_PASS: 'football3'
+  DB_PASSWORD:
+  DB_PASS: 
   DB_HOST: '34.162.122.101'
   DB_PORT: '5432'
   DATABASE_URL: 'postgresql://awfasano:football3@34.162.122.101/scorecard'
