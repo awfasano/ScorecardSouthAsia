@@ -9,7 +9,7 @@ env_variables:
   DB_PASS: 
   DB_HOST: '34.162.122.101'
   DB_PORT: '5432'
-  DATABASE_URL: 'postgresql://awfasano:football3@34.162.122.101/scorecard'
+  DATABASE_URL: 
 
 handlers:
   - url: /static
